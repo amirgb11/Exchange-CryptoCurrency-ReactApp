@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
+var NumberFormat = require('react-number-format');
 
 class App extends Component {
 
@@ -24,21 +24,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+        {Object.keys(this.state.cryptos).map((key) => (
+          <div id="crypto-container">
+            <span className="left">{key}</span>
+            <span className="right"><NumberFormat value={this.state.cryptos[key].USD} displayType={'text'} decimalPrecision={2} thousandSeparator={true} prefix={'دلار '}></NumberFormat></span>
+          </div>// crypto container
+        ))}
+      </div> //App 
     );
   }
 }
